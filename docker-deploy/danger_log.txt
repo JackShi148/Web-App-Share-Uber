@@ -1,0 +1,20 @@
+						Danger log
+1. The special requirement matching is not very precise. The allowed roles to set special requirements are ride owner and driver. We just check if any of them set special requirements, and if their special requirements are equal to each other, then they will match each other. But this method might exclude some related but not exactly the same special requirements, which would trigger some delays or misunderstandings.
+
+2. The fields in the forms.py have already set the corresponding attributes. But in the html files, we repeatedly set the same attributes, which leads to the redundancy of codes.
+
+3. Some names of forms in the forms.py are very similar and so are their fields, which might cause some misunderstandings triggering some unexpected bugs.
+
+4. For simplicity, once there is at least one sharer joining one ride, the owner of the ride is forbidden from editing or canceling the ride, which is not practical in reality. The owner of one requested ride should always holds the highest privilege. We would like to improve this situation by informing the sharers of any change of the requested ride through emails in the future.
+
+5. During the process of editing a ride, even if the ride owner does not want to change the vehicle type, the vehicle type will be set to �Sedan� by default, which might cause some unexpected misunderstanding in reality. As a result, in every edit, the owner has to manually set the vehicle type by himself/herself, unless the vehicle type they would like to select is Sedan.
+
+6. During the process of editing a ride, the arrival time and whether the ride is sharable or not are needed to be manually set again, which might cause inconvenience if the owner does not want to change these fields.
+
+7. During the process of editing the driver information (especially the vehicle information), the vehicle type will be automatically set to Sedan. This will lead to some mistakes when the driver is not intended to edit his/her vehicle information but forgets to fill it with correct value. To modify this, we are going to improve the html file of editing driver information page.
+
+8. The page displaying the rides belonging to the user just shows the vehilcle type, but not the vehicle plate number. It is more rational to display the vehicle plate number when the user viewing his/her rides. This is partially because of our dataset definition in models.py, which makes this function slightly hard to realize. Thus, we are going to modify our dataset definition to improve the front end.
+
+9. In our implementation, we don't put any restriction on the variable maximum passenger, which is the capacity of driver's vehilcle. This implememtation may cause some faults. Actually, the system have the data of driver's vehicle type, and thus we can improve the system by setting some regulations based on the vehicle type.
+
+10. In our implememtation, a driver can confirm several rides that have very close arrival time. This couldn't be the reality since it is almost impossible that the driver can send the passengers of both rides to the destination on time. To modify this, it is better to restrict the driver's ability to confirm another ride before he/she complete the current confirmed one.

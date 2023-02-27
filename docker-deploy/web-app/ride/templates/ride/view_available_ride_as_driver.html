@@ -1,0 +1,54 @@
+{% extends 'ride/base.html' %}
+
+{% block content %}
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+    <h4>Rides available to be confirmed by you</h4>
+  </div>
+
+  <!-- List group -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Owner</th>
+        <th>Destination</th>
+        <th>Arrival time</th>
+        <th>Vehicle type</th>
+        <th>Passagers With Owner</th>
+        <th>Sharable</th>
+        <th>Driver</th>
+        <th>Sharer</th>
+        <th>Passagers With Sharer</th>
+        <th>Ride status</th>
+        <th>Avaliable seats</th>
+        <th>Special Requirements</th>
+        <th>Operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ride_info in available_rides %}
+      <tr>
+        <td>{{ ride_info.owner }}</td>
+        <td>{{ ride_info.destination }}</td>
+        <td>{{ ride_info.arrival_time }}</td>
+        <td>{{ ride_info.vehicle_type }}</td>
+        <td>{{ ride_info.owner_seats }}</td>
+        <td>{{ ride_info.sharable }}</td>
+        <td>{{ ride_info.driver }}</td>
+        <td>{{ ride_info.sharer }}</td>
+        <td>{{ ride_info.sharer_seats }}</td>
+        <td>{{ ride_info.status }}</td>
+        <td>{{ ride_info.available_seats }}</td>
+        <td>{{ ride_info.special_requirements }}</td>
+        <td>
+          <a href="/user/{{ ride_info.id }}/confirm_specific_ride_as_driver/" class="btn btn-primary btn-lg active btn-sm"
+            role="button">Confirm</a>
+        </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+{% endblock %}

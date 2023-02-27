@@ -1,0 +1,49 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><h4>Edit Driver Information</h4></div>
+
+    <!-- List group -->
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        <div style="width: 1300px; margin-left: 100px;">
+            <label>{{form.phone.label}}</label>
+            <input type="text" name="phone" class="form-control" placeholder="{{ form.phone.label }}"
+                value="{{ cur_user.driverinfo.phone }}">
+            <div style="color: red">{{form.phone.errors.0}}</div>
+
+            <label>{{form.car_type.label}}</label>
+            <!-- <input type="text" name="car_type" class="form-control" placeholder="{{ form.car_type.label }}"
+                value="{{ cur_user.driverinfo.car_type }}"> -->
+            {{ form.car_type }}
+            <div style="color: red">{{form.car_type.errors.0}}</div>
+
+            <label>{{form.licenseNum.label}}</label>
+            <input type="text" name="licenseNum" class="form-control" placeholder="{{ form.licenseNum.label }}"
+                value="{{ cur_user.driverinfo.licenseNum }}">
+            <div style="color: red">{{form.licenseNum.errors.0}}</div>
+
+            <label>{{form.plateNum.label}}</label>
+            <input type="text" name="plateNum" class="form-control" placeholder="{{ form.plateNum.label }}"
+                value="{{ cur_user.driverinfo.plateNum }}">
+            <div style="color: red">{{form.plateNum.errors.0}}</div>
+
+            <label>{{form.max_pgers.label}}</label>
+            <input type="text" name="max_pgers" class="form-control" placeholder="{{ form.max_pgers.label }}"
+                value="{{ cur_user.driverinfo.max_pgers }}">
+            <!-- {{field}} -->
+            <div style="color: red">{{form.max_pgers.errors.0}}</div>
+
+            <label>{{form.special_info.label}}</label>
+            <input type="text" name="special_info" class="form-control" placeholder="{{ form.special_info.label }}"
+                value="{{ cur_user.driverinfo.special_info }}">
+            <div style="color: red">{{form.special_info.errors.0}}</div>
+
+            <p></p>
+            <input type="submit" value="confirm" class="btn btn-primary">
+        </div>
+    </form>
+</div>
+{% endblock %}

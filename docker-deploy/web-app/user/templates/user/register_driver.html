@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.min.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 align="center">Driver Registration</h3>
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            <div style="width: 1300px; margin-left: 100px;">
+                {% for field in form %}
+                <div clas="form-group">
+                    <label>{{field.label}}</label>
+                    {{field}}
+                    <span style="color: red">{{field.errors.0}}</span>
+                </div>
+                {% endfor %}
+                <p></p>
+                <input type="submit" value="confirm" class="btn btn-primary">
+            </div>
+        </form>
+
+        {% if messages %}
+        {% for message in messages %}
+        <p class="lead" align="center" style="color:red"><strong>{{message}}</strong></p>
+        {% endfor %}
+        {% endif %}
+
+        <h4 style="width: 1300px; margin-left: 100px;">Don't want to be a driver anymore? <a href="{% url 'home' %}" class="lbtn btn-primary">Back to Home Page</span></h4>
+
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

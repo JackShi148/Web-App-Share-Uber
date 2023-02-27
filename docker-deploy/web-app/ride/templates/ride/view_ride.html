@@ -1,0 +1,144 @@
+{% extends 'ride/base.html' %}
+
+{% block content %}
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+    <h4>My ride information</h4>
+  </div>
+  <div style="float: right; width: 800px; margin-top: 10px;">
+    <form method="get">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for any destination you want to to..." name="q"
+          value="{{ search_data }}">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </button>
+        </span>
+      </div>
+    </form>
+  </div>
+
+  <!-- List group -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Owner</th>
+        <th>Destination</th>
+        <th>Arrival time</th>
+        <th>Vehicle type</th>
+        <th>Passagers With Owner</th>
+        <th>Sharable</th>
+        <th>Driver</th>
+        <th>Sharer</th>
+        <th>Passagers With Sharer</th>
+        <th>Ride status</th>
+        <th>Avaliable seats</th>
+        <th>Special Requirements</th>
+        <th>Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ride_info in all_ride_info %}
+      <tr>
+        <td>{{ ride_info.owner }}</td>
+        <td>{{ ride_info.destination }}</td>
+        <td>{{ ride_info.arrival_time }}</td>
+        <td>{{ ride_info.vehicle_type }}</td>
+        <td>{{ ride_info.owner_seats }}</td>
+        <td>{{ ride_info.sharable }}</td>
+        <td>{{ ride_info.driver }}</td>
+        <td style="white-space: pre;">{{ ride_info.sharer }}</td>
+        <td>{{ ride_info.sharer_seats }}</td>
+        <td>{{ ride_info.status }}</td>
+        <td>{{ ride_info.available_seats }}</td>
+        <td style="white-space: pre;">{{ ride_info.special_requirements }}</td>
+        <td>
+          <a href="/user/{{ ride_info.id }}/owner_edit_ride/" class="btn btn-primary btn-lg active btn-sm"
+            role="button">Edit</a>
+          <a href="/user/{{ ride_info.id }}/owner_delete_ride" class="btn btn-danger btn-lg active btn-sm"
+            role="button">Cancel</a>
+        </td>
+      </tr>
+      {% endfor %}
+      {% for ride_info in all_share_ride_info %}
+      <tr>
+        <td>{{ ride_info.owner }}</td>
+        <td>{{ ride_info.destination }}</td>
+        <td>{{ ride_info.arrival_time }}</td>
+        <td>{{ ride_info.vehicle_type }}</td>
+        <td>{{ ride_info.owner_seats }}</td>
+        <td>{{ ride_info.sharable }}</td>
+        <td>{{ ride_info.driver }}</td>
+        <td style="white-space: pre;">{{ ride_info.sharer }}</td>
+        <td>{{ ride_info.sharer_seats }}</td>
+        <td>{{ ride_info.status }}</td>
+        <td>{{ ride_info.available_seats }}</td>
+        <td style="white-space: pre;">{{ ride_info.special_requirements }}</td>
+        <td>
+          <a href="/user/{{ ride_info.id }}/sharer_edit_ride/" class="btn btn-primary btn-lg active btn-sm"
+            role="button">Edit</a>
+          <a href="/user/{{ ride_info.id }}/sharer_delete_ride" class="btn btn-danger btn-lg active btn-sm"
+            role="button">Cancel</a>
+        </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+  <!-- Default panel contents -->
+
+  {% if is_driver == True%}
+  <div class="panel-heading">
+    <h4>My ride information as Driver</h4>
+  </div>
+
+  <!-- List group -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Owner</th>
+        <th>Destination</th>
+        <th>Arrival time</th>
+        <th>Vehicle type</th>
+        <th>Passagers With Owner</th>
+        <th>Sharable</th>
+        <th>Driver</th>
+        <th>Sharer</th>
+        <th>Passagers With Sharer</th>
+        <th>Ride status</th>
+        <th>Avaliable seats</th>
+        <th>Special Requirements</th>
+        <th>Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ride_info in all_driver_ride_info %}
+      <tr>
+        <td>{{ ride_info.owner }}</td>
+        <td>{{ ride_info.destination }}</td>
+        <td>{{ ride_info.arrival_time }}</td>
+        <td>{{ ride_info.vehicle_type }}</td>
+        <td>{{ ride_info.owner_seats }}</td>
+        <td>{{ ride_info.sharable }}</td>
+        <td>{{ ride_info.driver }}</td>
+        <td style="white-space: pre;">{{ ride_info.sharer }}</td>
+        <td>{{ ride_info.sharer_seats }}</td>
+        <td>{{ ride_info.status }}</td>
+        <td>{{ ride_info.available_seats }}</td>
+        <td style="white-space: pre;">{{ ride_info.special_requirements }}</td>
+        <td>
+          <a href="/user/{{ ride_info.id }}/driver_complete_ride/" class="btn btn-primary btn-lg active btn-sm"
+            role="button">Complete</a>
+        </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+  {% endif%}
+
+</div>
+{% endblock %}

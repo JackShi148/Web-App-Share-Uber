@@ -1,0 +1,41 @@
+{% extends 'ride/base.html' %}
+
+{% block content %}
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Request a new ride</div>
+
+    <!-- List group -->
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        <div style="width: 1300px; margin-left: 100px;">
+            <label>{{form.destination.label}}</label>
+            {{ form.destination }}
+            <div style="color: red">{{form.destination.errors.0}}</div>
+
+            <label>{{form.arrival_time.label}}</label>
+            {{ form.arrival_time }}
+            <div style="color: red">{{form.arrival_time.errors.0}}</div>
+
+            <label>{{form.party_size.label}}</label>
+            {{ form.party_size }}
+            <div style="color: red">{{form.party_size.errors.0}}</div>
+
+            <label>{{form.vehicle_type.label}}</label>
+            {{ form.vehicle_type }}
+            <div style="color: red">{{form.vehicle_type.errors.0}}</div>
+
+            <label>{{form.sharable.label}}</label>
+            {{ form.sharable }}
+            <div style="color: red">{{form.sharable.errors.0}}</div>
+
+            <label>{{form.special_request.label}}</label>
+            {{ form.special_request }}
+            <div style="color: red">{{form.special_request.errors.0}}</div>
+            <p></p>
+            <input type="submit" value="confirm" class="btn btn-primary">
+        </div>
+    </form>
+
+</div>
+{% endblock %}
